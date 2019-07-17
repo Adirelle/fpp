@@ -76,11 +76,11 @@ function buildToArrayBody(Definition $definition, ?Constructor $constructor, Def
 
                 if ($argument->nullable()) {
                     $prefixCode .= "        \${$argumentName} = null;\n\n";
+                    $prefixCode .= "        foreach ((array)\$this->$argumentName as \$__value) {\n";
                 } else {
                     $prefixCode .= "        \${$argumentName} = [];\n\n";
+                    $prefixCode .= "        foreach (\$this->$argumentName as \$__value) {\n";
                 }
-
-                $prefixCode .= "        foreach (\$this->$argumentName as \$__value) {\n";
 
                 $match = false;
 
