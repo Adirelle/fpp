@@ -21,11 +21,21 @@ use PHPUnit\Framework\TestCase;
 class ToArrayTest extends TestCase
 {
     /**
+     * @test
      * @dataProvider get_test_cases
      */
-    public function test_to_array_returns_an_array(User $user, array $array): void
+    public function it_returns_an_array(User $user, array $array): void
     {
         self::assertEquals($array, $user->toArray());
+    }
+
+    /**
+     * @test
+     * @dataProvider get_test_cases
+     */
+    public function it_returns_an_array_usable_as_from_array_argument(User $user, array $array): void
+    {
+        self::assertEquals($user, User::fromArray($user->toArray()));
     }
 
     public function get_test_cases(): array
